@@ -1,0 +1,8 @@
+#!/usr/bin/rarun2
+
+# program that we want to debug 
+program=crackme0x02
+
+# provide input to the program via stdin
+input=fake
+
