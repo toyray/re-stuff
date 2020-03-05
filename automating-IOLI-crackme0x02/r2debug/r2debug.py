@@ -17,19 +17,20 @@ r2.cmd('db 0x08048448')
 # dc continues execution until our breakpoint is hit
 r2.cmd('dc')
 
-# '? `dr~eax[1]:0`~uint32[1]" extracts the value in EAX and converts it to an unsigned integer.
+# '? `dr~eax[1]:0`~int32:0[1]" extracts the value in EAX and converts it to an signed integer.
 # Detailed breakdown of command as follows:
 
-# "? `sub-command`~uint32[1]" gets the value returned by the subcommand as an unsigned integer (which is the value of the password)
+# "? `sub-command`~int32:0[1]" gets the value returned by the subcommand as an signed integer (which is the value of the password)
 # 1. ? evaluates the value of an expression. In this case the expression is the output of the subcommand enclosed within the `` marks
-# 2. ~uint32 greps the output lines containing uint32
-# 3. [1] extracts only the second column
+# 2. ~int32 greps the output lines containing int32
+# 3. :0 extracts only the first row
+# 4. [1] extracts only the second column
 
 # dr~eax:0[1] gets the value in EAX
 # 1. dr prints out the values of the registers
 # 2. ~eax greps the output lines containing 'eax'
 # 3. :0 extracts only the first row
-print "Password is " + r2.cmd('? `dr~eax[1]:0`~uint32[1]"')
+print "Password is " + r2.cmd('? `dr~eax[1]:0`~int32:0[1]"')
 
 # Cleanup up the r2pipe instance
 r2.quit()
