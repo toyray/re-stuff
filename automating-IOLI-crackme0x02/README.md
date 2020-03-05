@@ -16,6 +16,6 @@ The entered password is read via *scanf()* and stored in **Var_4h** as an intege
 
 # Methods
 
-1. [Scripted debugging with Radare2 and r2pipe for Linux](/r2debug/)
+1. [Scripted debugging with Radare2 and r2pipe for Linux](r2debug/)
 
 TO BE CONTINUED ...

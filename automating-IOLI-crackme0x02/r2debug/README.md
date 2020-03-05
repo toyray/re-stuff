@@ -16,7 +16,7 @@ If the script requires debugging commands, create a r2pipe instance with debuggi
 r2 = r2pipe.open('binary', flags=['-d'])
 ```
 
-If the binary requires stdin, a *rarun2* debug profile is required. An example profile for this crackme can be seen [here](/crackme0x02.rr2)
+If the binary requires stdin, a *rarun2* debug profile is required. An example profile for this crackme can be seen [here](crackme0x02.rr2).
 
 ```
 r2 = r2pipe.open('binary')
