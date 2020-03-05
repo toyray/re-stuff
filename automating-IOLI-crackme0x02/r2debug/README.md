@@ -24,10 +24,17 @@ r2.cmd('e dbg.profile=profile.rr2')
 r2.cmd('ood') # Reload the binary to use the rarun2 profile
 ```
 
-Commands for radare2 are executed using `cmd()`
+Commands for radare2 are executed using `cmd()`. Debugging commands in Radare2 are prefixed with `d`. Use `d?` for documentation on available commands.
 
 ```
-r2.cmd('pdf')
+# db creates a breakpoint at specified address
+r2.cmd('db breakpoint_addr')
+
+# dc continues execution until our breakpoint is hit
+r2.cmd('dc')
+
+# dr displays all registers when breakpoint is hit
+print r2.cmd('dr')
 ```
 
 Once you're done with the r2pipe instance, close it with `quit()`
