@@ -22,16 +22,19 @@ Commands for radare2 are executed using `cmd()`. Emulation commands are prefixed
 # aei initializes the ESIL VM state.
 r2.cmd('aei')
 
-# aeim initializes the ESIL VM stack. The default stack address of 0x100000 and size 0xf0000 works for us so we don't specify any arguments to aeim.
+# aeim initializes the ESIL VM stack. The default stack address of 0x100000 and 
+# size 0xf0000 works for us so we don't specify any arguments to aeim.
 r2.cmd('aeim')
 
-# aepc sets the Program Counter to the starting address for emulation. For platforms that use Instruction Pointer (IP) like x86, use aeip instead.
+# aepc sets the Program Counter to the starting address for emulation. For platforms
+# that use Instruction Pointer (IP) like x86, use aeip instead.
 r2.cmd('aepc start_addr')
 
 # aecu continues emulation until the specified ending address.
 r2.cmd('aecu end_addr')
 
-# aer displays all registers at the current point of emulation. aer can also be used to set registers before starting the emulation
+# aer displays all registers at the current point of emulation. aer can also be used
+# to set registers before starting the emulation
 r2.cmd('aer')
 ```
 
@@ -42,5 +45,5 @@ r2.quit()
 ```
 
 # References
-[Emulation intro @ radare2 book](https://radare.gitbooks.io/radare2book/content/analysis/emulation.html)
-[Tutorial @ radare2 explorations book](https://monosource.gitbooks.io/radare2-explorations/content/tut3/tut3_-_esil.html)
+- [Emulation intro @ radare2 book](https://radare.gitbooks.io/radare2book/content/analysis/emulation.html)
+- [Tutorial @ radare2 explorations book](https://monosource.gitbooks.io/radare2-explorations/content/tut3/tut3_-_esil.html)
