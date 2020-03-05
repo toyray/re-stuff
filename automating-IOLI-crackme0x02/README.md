@@ -23,3 +23,4 @@ The entered password is read via *scanf()* at *0x00011080* and stored in **var_1
 
 1. [Debugging with Radare2 and r2pipe for Linux](r2debug/)
 2. [Emulation with Radare2 and r2pipe for ARM](r2emu/)
+3. [Debugging with GDB command file for Linux](gdb/)

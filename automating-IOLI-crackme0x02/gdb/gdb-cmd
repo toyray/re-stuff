@@ -1,0 +1,17 @@
+# GDB command file for crackme0x02 password
+# There are two ways to run this command file
+# 1. gdb crackme0x02 --command gdb-cmd
+# 2. gdb crackme0x02 and inside gdb, type source gdb-cmd
+
+# b * is alias for break * which  sets breakpoints for addresses instead of source code lines
+break *0x8048448
+
+# r is alias for run, which runs the program until our breakpoint is hit
+r
+
+# i r eax is alias for info registers eax, which displays only the value for EAX in both hexadecimal and decimal.
+#  EAX is the register that contains the password
+i r eax
+
+# q is alias for quit. In interactive mode, gdb prompts you whether to kill process and quit. Inside command files, the prompt is suppressed
+q
