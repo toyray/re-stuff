@@ -32,3 +32,4 @@ The entered password is read via *scanf()* at *0x00401360* and stored in **var_4
 3. [Debugging with GDB command file for Linux](gdb/)
 4. [Debugging with x64dbg script for Windows](x64dbg/)
 5. [Solving and simplifying with Z3 for Linux/Windows](z3/)
+6. [Debugging with WinAppDbg for Windows](winappdbg/)
