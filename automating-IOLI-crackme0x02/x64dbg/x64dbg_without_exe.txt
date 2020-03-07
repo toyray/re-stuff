@@ -1,0 +1,19 @@
+log "Starting x64 session"
+
+// Clear all breakpoints
+bpc
+
+// Set single shot breakpoint at 0x00401382 
+bpx "0x00401382", "Set a single shot breakpoint to view EAX", "ss"
+
+// Prompt user to enter any password so that execution can continue
+msg "Enter any password in the Crackme window"
+
+// Continue execution
+go
+
+// Convert EAX to an signed integer and display to user
+msg "password: {d:eax}"
+
+// Terminate the process
+stop

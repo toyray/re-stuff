@@ -1,0 +1,26 @@
+log "Starting x64 session"
+
+initdbg "crackme0x02.exe" // this must be set to the absolute path to the crackme binary
+
+// The following lines are needed as the GUI switches from Script tab to CPU tab after the initdbg 
+msg "Return to Script tab and press Space to continue running script"
+pause
+rtu // Run to user code so that we can set the breakpoint in the crackme process
+
+// Clear all breakpoints
+bpc
+
+// Set single shot breakpoint at 0x00401382 
+bpx "0x00401382", "Set a single shot breakpoint to view EAX", "ss"
+
+// Prompt user to enter any password so that execution can continue
+msg "Enter any password in the Crackme window"
+
+// Continue execution
+go
+
+// Convert EAX to an signed integer and display to user
+msg "password: {d:eax}"
+
+// Terminate the process
+stop

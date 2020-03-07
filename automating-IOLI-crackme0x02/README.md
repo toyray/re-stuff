@@ -11,7 +11,7 @@ The important bits of the crackme are shown below. The password generation algor
 
 ![Disassembly of important bits](img/linux-disasm.png)
 
-The entered password is read via *scanf()* at *0x8048426* and stored in **var_4h** as an integer. It must match the value in **eax** at *0x08048448* which is calculated by a few mathematical operations between *0x804842B* and *0x8048444*.
+The entered password is read via *scanf()* at *0x08048426* and stored in **var_4h** as an integer. It must match the value in **eax** at *0x08048448* which is calculated by a few mathematical operations between *0x0804842B* and *0x8048444*.
 
 ## PocketPC (ARM)
 
@@ -19,8 +19,15 @@ The entered password is read via *scanf()* at *0x8048426* and stored in **var_4h
 
 The entered password is read via *scanf()* at *0x00011080* and stored in **var_18h** as an integer. It must match the value in **r3** at *0x000110b8* which is calculated by a few mathematical operations between *0x00011084* and *0x000110b0*.
 
+## Windows
+
+![Disassembly of important bits](img/win-disasm.png)
+
+The entered password is read via *scanf()* at *0x00401360* and stored in **var_4h** as an integer. It must match the value in **eax** at *0x00401382* which is calculated by a few mathematical operations between *0x00401365* and *0x0040137e*.
+
 # Methods
 
 1. [Debugging with Radare2 and r2pipe for Linux](r2debug/)
 2. [Emulation with Radare2 and r2pipe for ARM](r2emu/)
 3. [Debugging with GDB command file for Linux](gdb/)
+4. [Debugging with x64dbg script for Windows](x64dbg/)
