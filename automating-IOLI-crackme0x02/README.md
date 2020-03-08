@@ -27,9 +27,21 @@ The entered password is read via *scanf()* at *0x00401360* and stored in **var_4
 
 # Methods
 
+Below are the different ways to analyse and solve this crackme. Some methods may be more optimal than others for different use cases so it helps to have various options handy.
+
+## Debugging
+
 1. [Debugging with Radare2 and r2pipe for Linux](r2debug/)
-2. [Emulation with Radare2 and r2pipe for ARM](r2emu/)
-3. [Debugging with GDB command file for Linux](gdb/)
-4. [Debugging with x64dbg script for Windows](x64dbg/)
-5. [Solving and simplifying with Z3 for Linux/Windows](z3/)
-6. [Debugging with WinAppDbg for Windows](winappdbg/)
+2. [Debugging with GDB command file for Linux](gdb/)
+3. [Debugging with x64dbg script for Windows](x64dbg/)
+4. [Debugging with WinAppDbg for Windows](winappdbg/)
+
+## Emulation
+
+1. [Emulation with Radare2 and r2pipe for ARM](r2emu/)
+2. [Emulation with Unicorn for ARM and Windows](unicorn)
+
+## Others
+Miscellaneous ways (for lack of a better name ...)
+
+1. [Solving and simplifying with Z3 for Linux/Windows](z3/)
