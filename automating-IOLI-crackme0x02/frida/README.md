@@ -21,7 +21,7 @@ session = frida.attach(pid)
 ```
 
 Load the JavaScript code from a file or include it inline as in the example below. For longer scripts, debugging will be easier if the JavaScript is in a separate script so that the line numbers reported by Frida are accurate.
-```javascript
+```python
 # Create JavaScript to be injected into our process
 script = session.create_script("""
 // Hook address instead of function
