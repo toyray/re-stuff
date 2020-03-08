@@ -12,13 +12,13 @@ Radare2's emulation mode currently doesn't support emulation of system and exter
 
 Create a r2pipe instance for a file *binary* using `open()`. Debugging is not required for emulation. 
 
-```
+```python
 r2 = r2pipe.open('binary')
 ```
 
 Commands for radare2 are executed using `cmd()`. Emulation commands are prefixed with `ae`, use `ae?` within Radare2's shell to read the relevant documentation.
 
-```
+```python
 # aei initializes the ESIL VM state.
 r2.cmd('aei')
 
@@ -40,7 +40,7 @@ r2.cmd('aer')
 
 Once you're done with the r2pipe instance, close it with `quit()`
 
-```
+```python
 r2.quit()
 ```
 

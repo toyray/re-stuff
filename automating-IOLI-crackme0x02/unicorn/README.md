@@ -13,7 +13,7 @@ Setting up Unicorn involves the following steps:
 
 1. Initialize the Unicorn engine with the correct architecture and mode.
 
-```
+```python
 from unicorn import *
 from unicorn.x86_const import *
 
@@ -23,7 +23,7 @@ mu = Uc(UC_ARCH_X86, UC_MODE_32)
 
 2. Mapping memory (RWX by default) for code. Mapping memory for stack, heap only if required (not shown here, please see example scripts).
 
-```
+```python
 # Define starting address for code execution
 CODE_ADDRESS = 0x100000
 
@@ -33,7 +33,7 @@ mu.mem_map(CODE_ADDRESS, 2 * 1024 * 1024)
 
 3. Writing code to mapped memory. An easy way to extract code via Radare2 is to run `r2 crackme0x02.exe -qc "pcs 0x20 @0x401365 > emu-code"` which will output 32 bytes of instructions from the address 0x401365 prefixed with *\x* to the file emu-code.
 
-```
+```python
 # Code to be emulated
 X86_CODE32 = b"\xc7\x45\xf8\x5a\x00\x00\x00\xc7\x45\xf4\xec\x01\x00\x00\x8b\x55\xf4\x8d\x45\xf8\x01\x10\x8b\x45\xf8\x0f\xaf\x45\xf8\x89\x45\xf4"
 
@@ -43,7 +43,7 @@ mu.mem_write(CODE_ADDRESS, X86_CODE32)
 
 4. Setting up initial register state.
 
-```
+```python
 # Initialize machine registers. EBP needs to have a value as it's used for
 # local variables
 STACK_ADDRESS = 0x110000
@@ -54,14 +54,14 @@ mu.reg_write(UC_X86_REG_EBP, STACK_ADDRESS)
 
 6. Emulate!
 
-```
+```python
 # Start emulating all 32 bytes of instructions
 mu.emu_start(CODE_ADDRESS, CODE_ADDRESS + len(X86_CODE32))
 ```
 
 7. Read any register or memory locations required.
 
-```
+```python
 # Read the value of EAX
 r_eax = mu.reg_read(UC_X86_REG_EAX)
 ```

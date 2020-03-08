@@ -14,7 +14,7 @@ Create a `Debug` object with an `EventHandler` object and user-defined callback 
 
 An excerpt of the example script is shown below.
 
-```
+```python
 from winappdbg import Debug, EventHandler
 
 # EventHandler class is required to handle all debugging events

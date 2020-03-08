@@ -12,7 +12,7 @@ The first script *z3-solve.py* is similar to emulation of the same x86 code sinc
 
 Use **BitVec** to represent registers and memory locations as they can work with xor operations unlike **Int**. When you print a BitVec, it will either display a value or a formula if that BitVec depends on another BitVec that doesn't have a solvable value at that point in time.
 
-```
+```python
 # Create memory locations and registers as 32 bit BitVecs. BitVecs in Z3
 # support xor unlike Ints. We don't use xor here but it's good to know.
 var_8, var_c, eax, edx = BitVecs('var_8 var_c eax edx', 32)
@@ -29,7 +29,7 @@ For z3 to solve anything, a Solver instance is required. Add constraints with th
 
 Use the `check()` method to determine if there is a solution. If there is, *check()* will return `sat` and the possible values for the solution can be displayed with the  `model()` method. Note that there may be more than one solution, so to limit the number of possible solutions, apply as many constraints as possible. 
 
-```
+```python
 # Create a z3 solver instance
 s = Solver()
 
