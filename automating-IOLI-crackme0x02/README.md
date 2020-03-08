@@ -44,4 +44,5 @@ Below are the different ways to analyse and solve this crackme. Some methods may
 ## Others
 Miscellaneous ways (for lack of a better name ...)
 
-1. [Solving and simplifying with Z3 for Linux and Windows crackmes](z3/)
+1. [Solving and simplifying with Z3 for Linux and Windows crackmes](z3/) 
+2. [Hooking with Frida for Linux crackme](frida/)
