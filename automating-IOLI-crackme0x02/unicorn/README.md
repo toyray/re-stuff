@@ -1,7 +1,7 @@
 # Introduction
 [Unicorn](http://www.unicorn-engine.org/) is a very useful tool for programmatically emulating sections of code and is available for multiple platforms (Windows, Linux, MacOS, etc).
 
-For simple tasks, Radare2's emulation mode (demonstrated [here](../r2emu) is usually sufficient but Unicorn is really powerful for more complicated use cases.
+For simple tasks, Radare2's emulation mode (demonstrated [here](../r2emui)) is usually sufficient but Unicorn is really powerful for more complicated use cases.
 
 The example scripts show Unicorn's x86 and ARM emulation (nearly identical with superficial changes for architectural differences) on a Linux system.
 
@@ -31,7 +31,7 @@ CODE_ADDRESS = 0x100000
 mu.mem_map(CODE_ADDRESS, 2 * 1024 * 1024)
 ```
 
-3. Writing code to mapped memory. An easy way to extract code via Radare2 is to run `r2 crackme0x02.exe -qc "pcs 0x20 @0x401365 > emu-code"` which will output 32 bytes of instructions from the address 0x401365 prefixed with *\x* to the file emu-code"
+3. Writing code to mapped memory. An easy way to extract code via Radare2 is to run `r2 crackme0x02.exe -qc "pcs 0x20 @0x401365 > emu-code"` which will output 32 bytes of instructions from the address 0x401365 prefixed with *\x* to the file emu-code.
 
 ```
 # Code to be emulated
@@ -41,7 +41,7 @@ X86_CODE32 = b"\xc7\x45\xf8\x5a\x00\x00\x00\xc7\x45\xf4\xec\x01\x00\x00\x8b\x55\
 mu.mem_write(CODE_ADDRESS, X86_CODE32)
 ```
 
-4. Setting up initial register state
+4. Setting up initial register state.
 
 ```
 # Initialize machine registers. EBP needs to have a value as it's used for
@@ -50,7 +50,7 @@ STACK_ADDRESS = 0x110000
 mu.reg_write(UC_X86_REG_EBP, STACK_ADDRESS)
 ```
 
-5. Setting up any hooks (not used in example scripts)
+5. Setting up any hooks (not used in example scripts).
 
 6. Emulate!
 
@@ -59,7 +59,7 @@ mu.reg_write(UC_X86_REG_EBP, STACK_ADDRESS)
 mu.emu_start(CODE_ADDRESS, CODE_ADDRESS + len(X86_CODE32))
 ```
 
-7. Read any register or memory locations required
+7. Read any register or memory locations required.
 
 ```
 # Read the value of EAX
@@ -67,5 +67,5 @@ r_eax = mu.reg_read(UC_X86_REG_EAX)
 ```
 
 # References
-[Official tutorial @ www,unicorn-engine.org](http://www.unicorn-engine.org/docs/tutorial.html) - Example scripts in Python and C
-[Python source code @ github.com/unicorn-engine/unicorn](https://github.com/unicorn-engine/unicorn/tree/master/bindings/python/bindings) - Source code for the Python bindings
+- [Official tutorial @ www,unicorn-engine.org](http://www.unicorn-engine.org/docs/tutorial.html) - Example scripts in Python and C
+- [Python source code @ github.com/unicorn-engine/unicorn](https://github.com/unicorn-engine/unicorn/tree/master/bindings/python/bindings) - Source code for the Python bindings. Useful for looking up the constants.

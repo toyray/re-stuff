@@ -8,7 +8,7 @@ To use z3 with Python, install `pip install z3-solver` which will install z3 and
 
 # Usage
 
-The first script *z3-solve.py* is similar to emulation of the same x86 code since the initial values of *var_8h* and *var_ch* are known. In such cases, emulation using other tools such as [Radare2](../r2emu) or [Unicorn]() is preferable. This still has its uses when dealing with dynamically injected code in interpreted languages Python for example.
+The first script *z3-solve.py* is similar to emulation of the same x86 code since the initial values of *var_8h* and *var_ch* are known. In such cases, emulation using other tools such as [Radare2](../r2emu) or [Unicorn](../unicorn) is preferable. This still has its uses when dealing with dynamically injected code in interpreted languages Python for example.
 
 Use **BitVec** to represent registers and memory locations as they can work with xor operations unlike **Int**. When you print a BitVec, it will either display a value or a formula if that BitVec depends on another BitVec that doesn't have a solvable value at that point in time.
 
