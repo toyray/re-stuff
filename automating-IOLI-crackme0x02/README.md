@@ -35,6 +35,7 @@ Below are the different ways to analyse and solve this crackme. Some methods may
 2. [Debugging with GDB command file for Linux crackme](gdb/)
 3. [Debugging with x64dbg script for Windows crackme](x64dbg/)
 4. [Debugging with WinAppDbg for Windows crackme](winappdbg/)
+5. [Debugging with WinDbg and WinDbg Preview for Windows crackme](windbg/)
 
 ## Emulation
 

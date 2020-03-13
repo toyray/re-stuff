@@ -1,0 +1,8 @@
+$$ Load and run this script via $$<path\to\classic.txt after opening crackme0x02.exe
+
+$$ Create a one-shot breakpoint and print password
+$$ .if is a contrived example of control flow token usage
+bp /1 00401382 ".if (eax>0) { .printf \"Password is %d.\n\n\",eax }"
+
+$$ Use gc instead of g as the above breakpoint is conditional
+gc
