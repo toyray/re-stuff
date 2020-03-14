@@ -33,5 +33,4 @@ ql.run()
 ```
 
 # References
--[API docs @ github.com/qilingframework/qiling](https://github.com/qilingframework/qiling/blob/master/docs/API.md) - Initialization options for the Qiling Engine
-
+- [API docs @ github.com/qilingframework/qiling](https://github.com/qilingframework/qiling/blob/master/docs/API.md) - Initialization options for the Qiling Engine
