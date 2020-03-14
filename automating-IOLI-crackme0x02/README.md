@@ -37,10 +37,11 @@ Below are the different ways to analyse and solve this crackme. Some methods may
 4. [Debugging with WinAppDbg for Windows crackme](winappdbg/)
 5. [Debugging with WinDbg and WinDbg Preview for Windows crackme](windbg/)
 
-## Emulation
+## Emulating
 
-1. [Emulation with Radare2 and r2pipe for ARM crackme](r2emu/)
-2. [Emulation with Unicorn for ARM and Windows crackmes](unicorn)
+1. [Emulating with Radare2 and r2pipe for ARM crackme](r2emu/)
+2. [Emulating with Unicorn for ARM and Windows crackmes](unicorn/)
+3. [Emulating with Qiling for Linux and Windows crackmes](qiling/)
 
 ## Others
 Miscellaneous ways (for lack of a better name ...)
