@@ -48,6 +48,45 @@ with Debug(eventHandler(), bKillOnExit = True ) as dbg:
 	dbg.loop()
 ```
 
+*wappdbg_hooks.py* demonstrates the use of API hooks which are handy for intercepting calls to Win32 APIs. The official docs has another example [here](https://winappdbg.readthedocs.io/en/latest/Debugging.html#example-9-intercepting-api-calls)
+
+To use this feature, define the hooks using the `api_hooks` variable and write your *pre_* and *post_* function callbacks within the EventHandler class. 
+
+```python
+# Define the APIs that we want to hook
+# scanf allows multiple optional arguments but We only define the mandatory 
+# parameter for scanf here. We still can access the optional arguments within
+# our callback
+apiHooks = {
+	 'msvcrt.dll' : [
+		( 'scanf', (PVOID, DWORD) )
+	]
+}
+		
+# Callback when leaving scanf
+def post_scanf(self, event, retval):
+	print 'Return value from scanf is %s' % HexDump.integer(retval)
+
+# Callback when entering scanf 
+# We define *args as an argument list with the splat operator as 
+# scanf can have multiple optional arguments depending on the
+# first format string argument
+def pre_scanf(self, event, return_address, format_string, *args):
+	# As this callback would be called for all calls to scanf, we
+	# check the return address to confirm that this is the call we
+	# care about
+	if (return_address == 0x00401365):
+		print 'Format string at address %s is "%s"' % (\
+		HexDump.address(format_string), \
+		event.get_process().peek_string(format_string))
+		
+		# args contain pointers to one or more buffers to store
+		# the values inputted by user
+		if (len(args) > 0):
+			print 'Buffer for user input at address: %s' % HexDump.address(args[0])
+			event.get_process().write_uint(args[0], 338724)
+```
+
 # References
 1. [Debugging docs @ winappdbg.readthedocs.io](https://winappdbg.readthedocs.io/en/latest/Debugging.html) - Official documentation on developing Debugging code with WinAppDbg
 2. [Programming Guide @ winappdbg.readthedocs.io](https://winappdbg.readthedocs.io/en/latest/ProgrammingGuide.html) - More examples on what can be developed with WinAppDbg

@@ -17,7 +17,8 @@ class eventHandler(EventHandler):
 		
 		# HACK: Unable to find a way to send STDIN for the password
 		# entry, so setting a breakpoint at scanf() to immediately
-		# return to callee
+		# return to callee. This is not actually needed since 
+		# WinAppDbg seems to continue on without any input
 		
 		# Get DLL module currently being loaded
 		module = event.get_module()
@@ -27,7 +28,7 @@ class eventHandler(EventHandler):
 			# Resolve starting address of scanf() function
 			address = module.resolve("scanf")
 
-			event.debug.break_at( pid, address, scanf_callback )
+			event.debug.break_at( pid, address, breakpoint_scanf_callback )
 	
 # Callback for breakpoint 401382 gets thread context for the value of 
 # EAX which has the password
@@ -40,7 +41,7 @@ def breakpoint_401382_callback(event):
 	event.debug.stop()
 
 # Callback for scanf 
-def scanf_callback(event):
+def breakpoint_scanf_callback(event):
 	process = event.get_process()
 	thread = event.get_thread()
 	context = thread.get_context()	
