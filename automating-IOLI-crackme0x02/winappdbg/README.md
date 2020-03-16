@@ -12,7 +12,7 @@ Scripting in WinAppDbg uses an event-driven approach instead of the linear appro
 
 Create a `Debug` object with an `EventHandler` object and user-defined callback functions to handle and process debugging event notifications e.g. breakpoints, hooks, etc. The official documentation on Debugging (referenced below) is essential reading for quickly getting up to speed.
 
-An excerpt of the example script is shown below.
+An excerpt from *wadbg.py* is shown below.
 
 ```python
 from winappdbg import Debug, EventHandler
@@ -48,7 +48,7 @@ with Debug(eventHandler(), bKillOnExit = True ) as dbg:
 	dbg.loop()
 ```
 
-*wappdbg_hooks.py* demonstrates the use of API hooks which are handy for intercepting calls to Win32 APIs. The official docs has another example [here](https://winappdbg.readthedocs.io/en/latest/Debugging.html#example-9-intercepting-api-calls)
+*wadbg_hooks.py* demonstrates the use of API hooks which are handy for intercepting calls to Win32 APIs. The official docs has another example [here](https://winappdbg.readthedocs.io/en/latest/Debugging.html#example-9-intercepting-api-calls).
 
 To use this feature, define the hooks using the `api_hooks` variable and write your *pre_* and *post_* function callbacks within the EventHandler class. 
 
