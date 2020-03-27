@@ -1,5 +1,5 @@
 # Introduction
-[Vivisect](https://github.com/vivisect/vivisect) is an analysis framework for PE and ELF binaries. There isn't much documentation outside the source code, so from poking around, there appears to several tools, namely:
+[Vivisect](https://github.com/vivisect/vivisect) is an analysis framework for PE and ELF binaries. There isn't much documentation outside the source code, so from poking around, there appears to be several tools, namely:
 
 1. vivisect - GUI, CLI for static analysis and emulation
 2. vdb - GUI debugger using Vtrace under the hood
@@ -53,7 +53,7 @@ trace.addBreakpoint(bp)
 trace.run()
 ```
 
-To write callback-style code for breakpoints, the code below can be used (
+To write callback-style code for breakpoints, the code below can be used.
 
 ```python
 # Code below adapted from:
