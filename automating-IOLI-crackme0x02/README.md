@@ -1,5 +1,5 @@
 # Background
-This is a collection of scripts to solve the password for a simple crackme **IOLI Crackme 0x02** from [GitHub/Maijin/Workshop2015/IOLI-crackme](https://github.com/Maijin/Workshop2015/tree/master/IOLI-crackme). 
+This is a collection of scripts to solve the password for a simple crackme **IOLI Crackme 0x02** from [GitHub/Maijin/Workshop2015/IOLI-crackme](https://github.com/Maijin/Workshop2015/tree/master/IOLI-crackme).
 
 As there are Linux (x86), Windows (x86) and PocketPC (ARM) versions of the same crackme, this is a great excuse to try out different tools :wink: and build a personal reference for automating similar RE tasks in the future.
 
@@ -36,6 +36,7 @@ Below are the different ways to analyse and solve this crackme. Some methods may
 3. [Debugging with x64dbg script for Windows crackme](x64dbg/)
 4. [Debugging and API hooking with WinAppDbg for Windows crackme](winappdbg/)
 5. [Debugging with WinDbg and WinDbg Preview for Windows crackme](windbg/)
+6. [Debugging with Vivisect for Linux crackme](vivisect/)
 
 ## Emulating
 
