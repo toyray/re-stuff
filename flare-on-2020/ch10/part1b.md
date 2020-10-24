@@ -94,9 +94,11 @@ The prompt should change to `[0x08048eb3]>` to show that r2 has moved to this ad
 We can continue to use the command prompt for additional tasks but for now, we will
 switch to Visual mode by typing `V` and pressing Enter.
 
+r2 displays the hex view by default.
+
 ![r2 visual hex](img/part1b-07.png)
 
-In Visual modw, commands are executed by pressing the appropriate key.
+In Visual mode, commands are executed by pressing the appropriate key.
 
 There are multiple displays/views/panels?? in Visual Mode and we switch between them by
 pressing `p`. Press `p` once and we'll see our code instead of the hex view
