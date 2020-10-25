@@ -8,13 +8,6 @@ challenges but may be useful in other contexts.
 There are some parts of the challenges that I want to explore further in the
 upcoming months and will link them here when I get to them.
 
-## Challenge 02
-
-Challenge 02 is a broken Windows PE. I screwed up the fixing part and so had
-to find a way to get to the flag.
-
-1. [Getting the Flag](ch02/part2.md) - Emulating in Radare2
-
 ## Challenge 10
 
 Challenge 10 is a 32 bit Linux ELF and has anti-debugging protection for
