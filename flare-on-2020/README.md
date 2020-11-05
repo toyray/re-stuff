@@ -18,5 +18,5 @@ some really hacky ways to get through part 2 and 3.
 2. [Part 1b](ch10/part1b.md) - Patching library calls in Radare2
 3. [Part 2](ch10/part2.md) - Patching in Radare2 to print dynamically-generated
    data
-4. [Part 3](part3.md) - Debugging specific functions in shellcode in x32dbg on
+4. [Part 3](ch10/part3.md) - Debugging specific functions in shellcode in x32dbg on
    Windows (HACKY!!!)
