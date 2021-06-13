@@ -9,7 +9,7 @@ Code was adapted from the Practical Reverse Engineering book and tested with
 Metasm 1.04 on Ruby 3.0.1.
 
 `code_bind.rb` shows how to disassemble and extract the semantics of a given code
-block and `sym_exec.rb' shows how to execute that same code block by providing
+block and `sym_exec.rb` shows how to execute that same code block by providing
 a context with arbitrary values.
 
 # References
