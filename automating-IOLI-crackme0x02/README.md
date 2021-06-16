@@ -50,5 +50,5 @@ Miscellaneous ways (for lack of a better name ...)
 
 1. [Solving and simplifying with Z3 for Linux and Windows crackmes](z3/)
 2. [Hooking with Frida for Linux crackme](frida/)
-3. [Extracting code semantics and symbolic execution for Linux crackme](metasm/)
-4. [Symbolic execution with angr for Linux crackme](angr/)
+3. [Extracting code semantics and symbolic execution with Metasm for Linux crackme](metasm/)
+4. [Symbolic execution with Angr for Linux crackme](angr/)
