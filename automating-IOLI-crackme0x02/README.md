@@ -44,6 +44,7 @@ Below are the different ways to analyse and solve this crackme. Some methods may
 2. [Emulating with Unicorn for ARM and Windows crackmes](unicorn/)
 3. [Emulating with Qiling for Linux and Windows crackmes](qiling/)
 4. [Emulating with Zelos for Linux crackme](zelos/)
+5. [Emulating and symbolic execution with Miasm for Linux crackme](miasm/)
 
 ## Others
 Miscellaneous ways (for lack of a better name ...)
