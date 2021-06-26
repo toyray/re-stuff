@@ -23,6 +23,8 @@ debugging the emulation process easy.
 
 - [Miasm blog](https://miasm.re/blog/) - Home to several examples that really
   showcases the power of this tool
+- [Advanced Binary Deobfuscation](https://github.com/malrev/ABD) - Up-to-date Miasm
+scripts from the NTT Secure Platform Laboratories course, very good examples
 - [Examples](https://github.com/cea-sec/miasm/tree/master/example) - Official
   examples from the Github repo
 - [Extra docs](https://github.com/cea-sec/miasm/tree/master/doc) - Handy Jupyter
