@@ -73,6 +73,7 @@ the code at the jump destination and discard the `jmp` instruction.
 - Return call destinations for further processing.
 
 ![Unconditional jumps](img/ch13_01.png)
+
 Fixing unconditional jumps: before (left) and after (right)
 
 ### Conditional Jumps
@@ -97,6 +98,7 @@ If no matches were found, the conditional jump was treated like a `call`
 instruction and processed like a function.
 
 ![Conditional jumps](img/ch13_02.png)
+
 Fixing conditional jumps: before (left) and after (right)
 
 ### Unrolled Loops
@@ -120,6 +122,7 @@ jump matching to not match in some instances (slightly increases the amount of
 duplicate code in the reconstructed version).
 
 ![Unrolled loops](img/ch13_03.png)
+
 Fixing unrolled loops: before (left) and after (right)
 
 ## Limitations
