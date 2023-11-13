@@ -25,9 +25,11 @@ I made copies of the file and tested x86 Real Mode (16 bit), x86 Protected Mode
 trial and error.
 
 ![Protected Mode switch](img/ch12_02.png)
+
 This switches from Real Mode to Protected Mode.
 
 ![Long Mode switch](img/ch12_03.png)
+
 Function starting from 0x0037 is for switching to Long Mode. The jump to 64 bit
 code is at 0x0030.
 
