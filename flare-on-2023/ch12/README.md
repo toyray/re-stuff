@@ -9,7 +9,7 @@ virtual processor
 
 For this challenge, we are really interested in finding the x64 assembly
 inside the code blob because we can assume that the important logic is running as
-64 bit code, due to the EXE code reading `rip`, `r8` and `r9 from the
+64 bit code, due to the EXE code reading `rip`, `r8` and `r9` from the
 `WHV_RUN_VP_EXIT_CONTEXT` struct after executing `WHvRunVirtualProcessor`.
 
 ![Reading values for decrypting code](img/ch12_01.png)
@@ -25,11 +25,9 @@ I made copies of the file and tested x86 Real Mode (16 bit), x86 Protected Mode
 trial and error.
 
 ![Protected Mode switch](img/ch12_02.png)
-
 This switches from Real Mode to Protected Mode.
 
 ![Long Mode switch](img/ch12_03.png)
-
 Function starting from 0x0037 is for switching to Long Mode. The jump to 64 bit
 code is at 0x0030.
 
