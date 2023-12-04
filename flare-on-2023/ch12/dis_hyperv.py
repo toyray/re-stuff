@@ -2,8 +2,7 @@ from capstone import *
 from capstone.x86 import *
 
 class Disasm:
-
-def __init__(self, cfg):
+    def __init__(self, cfg):
         self.disasm_size = cfg.get("disasm_size", 50)
 
     def load(self, filename):
