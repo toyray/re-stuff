@@ -384,7 +384,11 @@ class Disasm:
         code_info = self.fix_reg_obfs(code_info)
 
         # Do another pass to remove nops and generate final code bytes
-        patched_bytes = self.remove_nops(code_info, new_va)
+        patched_bytes, addr_map = self.remove_nops(code_info, new_va)
+
+        # Do another pass with addr_map to point internal jumps to the correct
+        # destinations
+        patched_bytes = self.fix_internal_jumps(patched_bytes, addr_map, new_va)
 
         # Write instruction bytes to file
         self.patch_bytes(new_va, patched_bytes)
@@ -572,20 +576,23 @@ class Disasm:
 
         # Get just the instructions that manipulate the register
         bytecode = b""
-        print("----")
-        print(code_info[start]["addr"])
         for i in range(start + 1, end -1):
             ci = code_info[i]
-            print(ci["inst"])
             bytecode += bytes(ci["bytes"])
 
-        print(reg)
         # Emulate code and get final value of reg
         val = emulate_reg_val(bytecode, reg)
 
         # Replace reg used in instruction with literal value
         ci = code_info[end - 1]
-        patched_code = ci["inst"].replace(reg, hex(val))
+
+        # TODO: This is an ugly way to patch those instructions that use
+        # partial register instead of the whole register e.g. CL instead of ECX
+        reg_lowbyte = reg[1] + "l"
+        if reg in ci["inst"]:
+            patched_code = ci["inst"].replace(reg, hex(val))
+        elif reg_lowbyte in ci["inst"]:
+            patched_code = ci["inst"].replace(reg_lowbyte, hex(val & 0xff))
 
         # Assemble the code
         asm_bytes = assemble(patched_code)
@@ -622,6 +629,10 @@ class Disasm:
           separate pass
         """
 
+        # TODO: Still not detecting the following pattern
+        # - When the instruction using the register is not immediately after
+        #   the pop register, see function @ 0x29000
+
         # Store the last index that we fixed a register obfuscation block
         last_fixed = -1
         fixing = True
@@ -651,7 +662,9 @@ class Disasm:
                         continue
 
                     # Check that instruction before pop uses the register
-                    if dest_reg not in code_info[end_i - 1]["inst"]:
+                    dest_reg_lowbyte = dest_reg[1] + "l"
+                    if dest_reg not in code_info[end_i - 1]["inst"] and \
+                        dest_reg_lowbyte not in code_info[end_i - 1]["inst"]:
                         continue
 
                     # Get the simplified code with nop padding
@@ -672,8 +685,11 @@ class Disasm:
 ## NOP cleanup funcs
     def remove_nops(self, code_info, start_va):
         """
-        Disassemble and rewrite the code without ops
+        Disassemble and rewrite the code without NOPs
         """
+        # TODO: This is probably better if we can working with basic blocks
+        # instead of individual ASM instructions
+
         orig_bytes = b""
         for ci in code_info:
             orig_bytes += bytes(ci["bytes"])
@@ -683,16 +699,21 @@ class Disasm:
         patched_bytes = b""
         new_ip = start_va
 
+        addr_map = {}
+
         while True:
             try:
                 i = next(codes)
             except StopIteration:
-                print("Aborting, no more code")
                 break
 
-            # Patch calls, leas and conditional jumps to point to the correct
-            # locations since the code is now located in the new section
-            if i.mnemonic == "call":
+            # Patch jmps, calls, leas to continue to redirect to the original
+            # offsets since their instruction addresses have moved after removing
+            # nops
+            if i.mnemonic == "jmp":
+                dest = self.handle_jump(i)
+                ins_bytes = self.get_patch_force_jump_bytes(new_ip, dest)
+            elif i.mnemonic == "call":
                 ins_bytes, _ = self.handle_call(i, new_ip)
             elif i.mnemonic == "lea":
                 ins_bytes, _ = self.handle_lea(i, new_ip)
@@ -705,9 +726,57 @@ class Disasm:
             if i.mnemonic != "nop":
                 patched_bytes += ins_bytes
 
+                addr_map[i.address] = new_ip
+
                 # Update the new virtual address so that we can relocate
                 # redirections correctly
                 new_ip += i.size
+
+            # We reach the end of the func, stop disassembly
+            if i.mnemonic == "ret":
+                break
+
+        return patched_bytes, addr_map
+
+    def fix_internal_jumps(self, code_bytes, addr_map, start_va):
+        """
+        Fix internal jumps so that they redirect to the correct destinations
+        removing all the NOPs
+        """
+        codes = self.md.disasm(code_bytes, start_va)
+
+        patched_bytes = b""
+        new_ip = start_va
+
+        while True:
+            try:
+                i = next(codes)
+            except StopIteration:
+                break
+
+            # Patch internal jmps to the correct locations since the relative
+            # offsets have changed after removing the nops
+            if i.mnemonic == "jmp":
+                dest = self.handle_jump(i)
+                new_dest = addr_map.get(dest, None)
+                if new_dest is not None:
+                    ins_bytes = self.get_patch_force_jump_bytes(new_ip, new_dest)
+                else:
+                    ins_bytes = i.bytes
+            elif X86_GRP_BRANCH_RELATIVE in i.groups and X86_GRP_JUMP in i.groups:
+                ins_bytes, dest = self.handle_conditional_jumps(i, new_ip)
+                new_dest = addr_map.get(dest, None)
+                if new_dest is not None:
+                    ins_bytes = self.get_patch_cond_jump_bytes(bytes(i.bytes), \
+                        new_ip, new_dest)
+            else:
+                ins_bytes = i.bytes
+
+            patched_bytes += ins_bytes
+
+            # Update the new virtual address so that we can relocate
+            # redirections correctly
+            new_ip += i.size
 
             # We reach the end of the func, stop disassembly
             if i.mnemonic == "ret":
